@@ -2,21 +2,21 @@ import { isHotkeyModifier, mapKey } from './parseHotkeys'
 ;(() => {
   if (typeof document !== 'undefined') {
     document.addEventListener('keydown', (e) => {
-      if (e.key === undefined) {
+      if (e.code === undefined) {
         // Synthetic event (e.g., Chrome autofill).  Ignore.
         return
       }
 
-      pushToCurrentlyPressedKeys([mapKey(e.key), mapKey(e.code)])
+      pushToCurrentlyPressedKeys([mapKey(e.code)])
     })
 
     document.addEventListener('keyup', (e) => {
-      if (e.key === undefined) {
+      if (e.code === undefined) {
         // Synthetic event (e.g., Chrome autofill).  Ignore.
         return
       }
 
-      removeFromCurrentlyPressedKeys([mapKey(e.key), mapKey(e.code)])
+      removeFromCurrentlyPressedKeys([mapKey(e.code)])
     })
   }
 
